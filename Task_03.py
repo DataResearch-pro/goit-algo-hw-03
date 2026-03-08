@@ -21,7 +21,7 @@ raw_numbers = [
 def normalize_phone(phone_number: str) -> str:
     ''' Cleaning and editing Phone number '''
     cleaning_data = ''.join(re.findall(r'\d+', phone_number))                   # Отримання цифр перебиранням рядка
-    pattern, repl = r'^(?P<prefix>380|80|0)(?=(?P<suffix>\d{9}))', r'+380'      # Патерни: префікса та суфікса, заміни
+    pattern, repl = r'^(?P<prefix>380|80|0)(?=(?P<suffix>\d{9})$)', r'+380'     # Патерни: префікса та суфікса, заміни
     new_phone_number, count = re.subn(pattern, repl, cleaning_data)             # Заміна префіксів
     if count:    
         return new_phone_number  
