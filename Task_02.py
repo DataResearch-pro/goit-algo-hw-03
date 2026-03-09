@@ -16,7 +16,7 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> list[int]:
     # Валідація логіки відповідно умов задачі
     flag_min = 0 < min < max
     flag_max = min < max < 1001
-    flag_quantity = 0 < quantity < max
+    flag_quantity = 0 < quantity < (max - min)
     
     # ↑ Обмеження для значень аргументів
     if not flag_min or not flag_max or not flag_quantity:
