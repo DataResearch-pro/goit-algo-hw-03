@@ -3,28 +3,28 @@ from datetime import datetime
 
 #⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶
 
-# Константи та вхідні дані
-DATE_NOW = datetime.today()
-date_custom = input("Enter the date in the format: YYYY-MM-DD (for example, 2026-01-01): ")
 
-#⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶
+def get_days_from_today():
+    '''Calculating the difference between today's date and any other date (in days)'''
+    # Вхідні дані та операційні змінні
+    date_custom: str
+    date_convert: datetime
+    date_difference: int
 
-
-def get_days_from_today(date: str) -> int:
-    '''Calculating the difference between dates (in days)'''
+    # Основний блок
     try:
-        date_convert = datetime.strptime(date, '%Y-%m-%d')                                              # Конвертація до об'єкта datetime
-        difference_date = DATE_NOW - date_convert                                                       # Різниця дат (timedelta obj)
+        date_custom     = input("Enter the date in the format YYYY-MM-DD: ")        # Отримання дати від користувача
+        date_convert    = datetime.strptime(date_custom, '%Y-%m-%d')                # Конвертація рядка у дату
+        date_difference = (datetime.today() - date_convert).days * (-1)             # Різниця дат (у днях)
     except ValueError:
-        print(f"Date '{date}' is incorrect. Format: YYYY-MM-DD (for example, 2026-01-01)")              # Стандартний виняток
+        print(f"Date '{date_custom}' is incorrect. For example, 2026-01-29.")       # Стандартний виняток
     else:
-        return difference_date.days * (-1)
+        print(f"\nDifference: {date_difference} (days)\n")                          
+        #return date_difference                                                     # Якщо потрібен експорт результату
 
 
 #⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶⊷⊶
 
 
 if __name__=='__main__':
-    diff_dates = get_days_from_today(date_custom)
-    if diff_dates is not None:
-        print(f"\nDifference: {get_days_from_today(date_custom)} (days)\n")
+    get_days_from_today()
